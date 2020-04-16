@@ -1,7 +1,7 @@
 from tensorflow import keras
 from random import randint
-import twitter_credentials
 import time
+import twitter_credentials
 import pandas as pd
 import json
 from tweepy import OAuthHandler
