@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Apr 15 22:27:30 2020
-
-@author: mathi
-"""
 from tensorflow import keras
 from random import randint
 import twitter_credentials

@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Mar 31 19:04:39 2020
-
-@author: mathi
-"""
 import pandas as pd
 
 # data link : https://github.com/Felixaverlant/French-Constitution

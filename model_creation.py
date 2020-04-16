@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Apr  4 17:09:23 2020
-
-@author: mathi
-"""
 import pandas as pd
 import json
 import numpy as np

@@ -1,11 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Apr  2 18:25:48 2020
-
-@author: mathi
-"""
 def data_preparation(articles):
-
+    """ Une fonction qui nettoie les articles avant d'appliquer le modèle stat """
+    
     articles_copy = articles.copy()
     
     # "(" et ")"
