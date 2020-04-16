@@ -16,7 +16,7 @@ from tweepy import API
 
 class ArticlePoster:
     TOKENIZER_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/tokenizer.json"
-    MODEL_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/weights/model_gru_dropout.hdf5"
+    MODEL_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/models/model_gru_dropout.hdf5"
     ARTICLES_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/articles.csv"
     ACCES_TOKEN = twitter_credentials.ACCES_TOKEN
     ACCES_TOKEN_SECRET = twitter_credentials.ACCES_TOKEN_SECRET

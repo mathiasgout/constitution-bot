@@ -13,7 +13,7 @@ from data_preparation import data_preparation
 
 ARTICLES_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/articles.csv"
 TOKENIZER_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/tokenizer.json"
-MODEL_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/weights/model_gru_dropout.hdf5"
+MODEL_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/models/model_gru_dropout.hdf5"
 
 
 """ Importation et preprocessing """
