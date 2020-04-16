@@ -38,10 +38,10 @@ vocab_size = len(word_index)
 
 
 """ Creation de X et y """
-# Creation d'un grand vecteur avec tout les mots
+# Création d'un grand vecteur avec tout les mots
 text = [item for sublist in sequences for item in sublist]
 
-# Creation de X et y par fenêtre coulissante
+# Création de X et y par fenêtre coulissante
 def sliding_window(text, sentence_len):
     seq = []
     for i in range(len(text)-sentence_len):
