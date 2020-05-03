@@ -1,8 +1,8 @@
 import pandas as pd
 
 # data link : https://github.com/Felixaverlant/French-Constitution
-CONSTITUTION_JSON_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/constitution.json"
-ARTICLES_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/articles.csv"
+CONSTITUTION_JSON_PATH = "constitution.json"
+ARTICLES_PATH = "articles.csv"
 
 df = pd.read_json(CONSTITUTION_JSON_PATH)
 

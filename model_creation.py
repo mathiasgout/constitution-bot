@@ -5,9 +5,9 @@ from tensorflow import keras
 from tensorflow.keras.preprocessing.text import Tokenizer
 from data_preparation import data_preparation
 
-ARTICLES_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/articles.csv"
-TOKENIZER_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/tokenizer.json"
-MODEL_PATH = "C:/Users/mathi/Documents/amusement/python/constitution/models/model_gru_dropout.hdf5"
+ARTICLES_PATH = "articles.csv"
+TOKENIZER_PATH = "tokenizer.json"
+MODEL_PATH = "models/model_gru_dropout.hdf5"
 
 
 """ Importation et preprocessing """
