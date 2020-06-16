@@ -35,4 +35,3 @@ def data_preparation(articles):
     articles_copy = articles_copy.str.replace(".", " . ")
     
     return articles_copy
-    

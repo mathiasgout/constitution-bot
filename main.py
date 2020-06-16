@@ -16,8 +16,7 @@ class ArticlePoster:
     ACCES_TOKEN_SECRET = twitter_credentials.ACCES_TOKEN_SECRET
     CONSUMER_KEY = twitter_credentials.CONSUMER_KEY
     CONSUMER_SECRET = twitter_credentials.CONSUMER_SECRET
-    
-    
+
     def __init__(self):
         
         self.articles = pd.read_csv(self.ARTICLES_PATH)
@@ -25,14 +24,14 @@ class ArticlePoster:
         
         # Chargement de l'objet Tokenizer
         with open(self.TOKENIZER_PATH) as f:
-                data = json.load(f)
-                self.tokenizer = keras.preprocessing.text.tokenizer_from_json(data)
+            data = json.load(f)
+            self.tokenizer = keras.preprocessing.text.tokenizer_from_json(data)
         
         self.reversed_word_index = self.tokenizer.index_word        
         
         # Création du début des phrases
         sequences = self.tokenizer.texts_to_sequences(self.articles)            
-        self.start_sentences = [sequence[0:k] for sequence in sequences for k in [2,3,4,5,6]]
+        self.start_sentences = [sequence[0:k] for sequence in sequences for k in [2, 3, 4, 5, 6]]
         
         # Chargement du modèle
         self.model = keras.models.load_model(self.MODEL_PATH)
@@ -41,14 +40,14 @@ class ArticlePoster:
         self.auth = OAuthHandler(self.CONSUMER_KEY, self.CONSUMER_SECRET)
         self.auth.set_access_token(self.ACCES_TOKEN, self.ACCES_TOKEN_SECRET)
 
-        
     def generate_article(self, number_stops):
         """ Fonction pour générer un article avec un nombre de phrase choisit """
         
         stop = 0
         tokenized_seq = [self.start_sentences[randint(0, len(self.start_sentences)-1)]]
         while stop < number_stops:
-            padded_sequence = keras.preprocessing.sequence.pad_sequences(tokenized_seq, maxlen=29, padding="pre", truncating="pre")
+            padded_sequence = keras.preprocessing.sequence.pad_sequences(tokenized_seq, maxlen=29, padding="pre",
+                                                                         truncating="pre")
             predicted_proba = self.model.predict(padded_sequence)
             tokenized_seq[0].append(predicted_proba.argmax())
             
@@ -60,13 +59,12 @@ class ArticlePoster:
         article = " ".join(listed_article)
         
         return article
-    
-    
+
     def article_shaping(self):
         """ Fonction pour mettre en forme l'article généré """
         
         # On génère un article qui a entre 3 et 5 phrases
-        article = self.generate_article(randint(3,5))
+        article = self.generate_article(randint(3, 5))
         
         article = article[0].upper() + article[1:len(article)]
         for i in range(len(article)-3):
@@ -86,8 +84,7 @@ class ArticlePoster:
         article = article.replace("liberté egalité fraternité", '"Liberté Egalité Fraternité"')
         
         return article        
-        
-    
+
     @staticmethod
     def text_to_list(text):
         """ Une fonction qui transforme un texte composé de mots en une liste de mots """
@@ -103,8 +100,7 @@ class ArticlePoster:
         list_words.append(word)
         
         return list_words
-    
-    
+
     @staticmethod
     def place_comma(idx, list_words, article):
         """ Une fonction qui place la virgule au bon endroit """
@@ -126,8 +122,8 @@ class ArticlePoster:
         article = article[:real_word_idx+word_len] + "," + article[real_word_idx+word_len:]
             
         return article
-    
-    
+
+    @property
     def fix_article(self):
         """ Une fonction qui place les virgules dans un article """
         
@@ -135,7 +131,7 @@ class ArticlePoster:
         
         # Création d'un dictionnaire des mots de l'article
         list_words = self.text_to_list(article)
-        article_idx = {k:list_words[k] for k in range(len(list_words))}
+        article_idx = {k: list_words[k] for k in range(len(list_words))}
         
         while True:
             print("\n")
@@ -144,9 +140,10 @@ class ArticlePoster:
             print(article_idx)
             while True:
                 try:
-                    word_idx = int(input("\nAprès quel mot voulez vous placer une virgule ? (donnez l'index du mot et -1 si vous ne voulez pas) : "))
+                    word_idx = int(input("\nAprès quel mot voulez vous placer une virgule ? "
+                                         "(donnez l'index du mot et -1 si vous ne voulez pas) : "))
                     print("\n")
-                    if word_idx < len(list_words) and word_idx >= -1:
+                    if len(list_words) > word_idx >= -1:
                         break
                     print("Donnez un index cohérent.")
                 except ValueError:
@@ -155,17 +152,16 @@ class ArticlePoster:
             if word_idx == -1:
                 return article
             else:
-                 article = self.place_comma(word_idx, list_words, article)
-                 
+                article = self.place_comma(word_idx, list_words, article)
 
     def text_to_tweet(self):
         """ Une fonction qui met en forme le tweet ou la liste de tweet si len(article) > 280 """
         
-        text = self.fix_article()
+        text = self.fix_article
         while True:
             try:
                 num_article = int(input("Article numéro ? : "))
-                if num_article < 100 and num_article > 0:
+                if 100 > num_article > 0:
                     break
             except ValueError:
                 print("Donnez un nombre entre 1 et 100.")
@@ -197,8 +193,7 @@ class ArticlePoster:
             text_list[i] = text_list[i].replace("  ", " ")
         
         return text_list
-    
-    
+
     def post_tweets(self):
         """ Une fonction qui poste les tweets """
         

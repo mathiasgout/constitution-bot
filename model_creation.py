@@ -41,6 +41,7 @@ vocab_size = len(word_index)
 # Création d'un grand vecteur avec tout les mots
 text = [item for sublist in sequences for item in sublist]
 
+
 # Création de X et y par fenêtre coulissante
 def sliding_window(text, sentence_len):
     seq = []
@@ -52,8 +53,9 @@ def sliding_window(text, sentence_len):
     for window in seq:
         X.append(window[:(sentence_len-1)])
         y.append(window[-1])
-    
+
     return X, y
+
 
 # On va entrainer le modèle sur les 29 premiers mots pour prédire le 30ème
 X, y = sliding_window(text, 30)
@@ -62,6 +64,8 @@ y = keras.utils.to_categorical(y, vocab_size+1)
 
 
 """ Creation du modèle """
+
+
 def build_model():
     model = keras.Sequential()
     model.add(keras.layers.Embedding(input_dim=vocab_size+1, output_dim=50, input_length=len(X[0])))
@@ -70,16 +74,16 @@ def build_model():
     model.add(keras.layers.Dense(100, activation="relu"))
     model.add(keras.layers.Dropout(0.5))
     model.add(keras.layers.Dense(vocab_size+1, activation="softmax"))
-    
+
     model.summary()
     model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
-    
+
     return model
 
 
 """ Entrainement """
+
+
 model = build_model()
 checkpoint = keras.callbacks.ModelCheckpoint(MODEL_PATH, monitor='loss', verbose=1, save_best_only=True, mode='min')
 model.fit(X, y, epochs=500, batch_size=128, use_multiprocessing=True, callbacks=[checkpoint])
-
-
