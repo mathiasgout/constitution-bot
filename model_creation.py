@@ -92,7 +92,8 @@ def build_model():
 
 """ Entrainement """
 
-
 model = build_model()
 checkpoint = keras.callbacks.ModelCheckpoint(MODEL_PATH, monitor='loss', verbose=1, save_best_only=True, mode='min')
 model.fit(X, y, epochs=500, batch_size=128, use_multiprocessing=True, callbacks=[checkpoint])
+
+print("Your model file : {}".format(os.path.join(os.getcwd(), MODEL_PATH)))
