@@ -1,3 +1,5 @@
+import os
+import datetime
 import pandas as pd
 import json
 import numpy as np
@@ -7,7 +9,14 @@ from data_preparation import data_preparation
 
 ARTICLES_PATH = "articles.csv"
 TOKENIZER_PATH = "tokenizer.json"
-MODEL_PATH = "models/model_gru_dropout.hdf5"
+
+# Check if "models" folder exist
+if os.path.exists("models") is False:
+    os.mkdir("models")
+
+# Create model file name based on the current time
+now = datetime.datetime.now().strftime("%Y%d%H%M")
+MODEL_PATH = "models/model_" + now + ".hdf5"
 
 
 """ Importation et preprocessing """

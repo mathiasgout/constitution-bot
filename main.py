@@ -1,3 +1,4 @@
+import os
 from tensorflow import keras
 from random import randint
 import time
@@ -10,7 +11,11 @@ from tweepy import API
 
 class ArticlePoster:
     TOKENIZER_PATH = "tokenizer.json"
-    MODEL_PATH = "models/model_gru_dropout.hdf5"
+
+    # Last model in the "models" folder
+    MODEL_PATH = os.path.join("models", os.listdir(os.path.join(os.getcwd()) + "/models")[-1])
+    print("Model used : {}".format(os.path.join(os.getcwd(), MODEL_PATH)))
+
     ARTICLES_PATH = "articles.csv"
     ACCES_TOKEN = twitter_credentials.ACCES_TOKEN
     ACCES_TOKEN_SECRET = twitter_credentials.ACCES_TOKEN_SECRET
