@@ -11,7 +11,7 @@ Lien vers bot : https://twitter.com/constFR_bot
 
 ## Instructions
 
-- `main.py` permet de générer et tweeter un article.
+- `main.py` permet de générer et tweeter un article. Au préalable, il faut qu'un fichier `twitter_credentials.py` soit créé. Ce fichier doit contenir ces 4 variables : `ACCES_TOKEN`, `ACCES_TOKEN_SECRET`, `CONSUMER_KEY` et `CONSUMER_SECRET`.
 - `train_model.py` permet d'entrainer son propre RNN. Le modèle est sauvegardé dans le dossier `models/`. 
 
 ## Requirements
