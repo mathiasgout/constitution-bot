@@ -11,7 +11,7 @@ Lien vers bot : https://twitter.com/constFR_bot
 
 ## Instructions
 
-- `main.py` permet de générer un article.
+- `main.py` permet de générer et tweeter un article.
 - `train_model.py` permet d'entrainer son propre RNN. Le modèle est sauvegardé dans le dossier `models/`. 
 
 ## Requirements
