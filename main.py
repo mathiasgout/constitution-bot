@@ -10,13 +10,16 @@ from tweepy import API
 
 
 class ArticlePoster:
-    TOKENIZER_PATH = "tokenizer.json"
+    DIR_DATA_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data_tokenizer")
+    TOKENIZER_PATH = os.path.join(DIR_DATA_PATH, "tokenizer.json")
+    ARTICLES_PATH = os.path.join(DIR_DATA_PATH, "articles.csv")
 
     # Last model in the "models" folder
-    MODEL_PATH = os.path.join("models", os.listdir(os.path.join(os.getcwd()) + "/models")[-1])
-    print("Model used : {}".format(os.path.join(os.getcwd(), MODEL_PATH)))
+    DIR_MODEL_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "models")
+    MODEL_NAME = os.listdir(DIR_MODEL_PATH)[-1]
+    MODEL_PATH = os.path.join(DIR_MODEL_PATH, MODEL_NAME)
+    print("Model used : {}".format(MODEL_PATH))
 
-    ARTICLES_PATH = "articles.csv"
     ACCES_TOKEN = twitter_credentials.ACCES_TOKEN
     ACCES_TOKEN_SECRET = twitter_credentials.ACCES_TOKEN_SECRET
     CONSUMER_KEY = twitter_credentials.CONSUMER_KEY
@@ -68,8 +71,8 @@ class ArticlePoster:
     def article_shaping(self):
         """ Fonction pour mettre en forme l'article généré """
         
-        # On génère un article qui a entre 3 et 5 phrases
-        article = self.generate_article(randint(3, 5))
+        # On génère un article qui a entre 2 et 4 phrases
+        article = self.generate_article(randint(2, 4))
         
         article = article[0].upper() + article[1:len(article)]
         for i in range(len(article)-3):
@@ -87,6 +90,7 @@ class ArticlePoster:
         article = article.replace("droits de l'homme", "Droits de l'Homme")
         article = article.replace("la marseillaise", '"La Marseillaise"')
         article = article.replace("liberté egalité fraternité", '"Liberté Egalité Fraternité"')
+        article = article.replace("l'etat", "l'État")
         
         return article        
 
@@ -139,15 +143,13 @@ class ArticlePoster:
         article_idx = {k: list_words[k] for k in range(len(list_words))}
         
         while True:
-            print("\n")
-            print("article = " + article)
-            print("\n")
+            print("\n-------------------- ARTICLE --------------------")
+            print("article = " + article + "\n")
             print(article_idx)
             while True:
                 try:
                     word_idx = int(input("\nAprès quel mot voulez vous placer une virgule ? "
                                          "(donnez l'index du mot et -1 si vous ne voulez pas) : "))
-                    print("\n")
                     if len(list_words) > word_idx >= -1:
                         break
                     print("Donnez un index cohérent.")
@@ -165,7 +167,7 @@ class ArticlePoster:
         text = self.fix_article
         while True:
             try:
-                num_article = int(input("Article numéro ? : "))
+                num_article = int(input("\nArticle numéro ? : "))
                 if 100 > num_article > 0:
                     break
             except ValueError:
@@ -213,7 +215,10 @@ class ArticlePoster:
             prv_tweet = api.user_timeline(count=1)
             prv_tweet_id = prv_tweet[0].id
             api.update_status(tweet_list[i], in_reply_to_status_id=prv_tweet_id)
-            
+
+        print("\n-------------------- Tweets Postés --------------------")
+        print("Tweet disponible sur la page : https://twitter.com/" + api.me().screen_name)
+           
             
 if __name__ == "__main__":
     post = ArticlePoster()
