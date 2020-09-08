@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 # articles path
-DIR_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data")
+DIR_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data_tokenizer")
 if os.path.isdir(DIR_PATH) is False:
     os.mkdir(DIR_PATH)
 
