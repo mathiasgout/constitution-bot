@@ -2,7 +2,7 @@ import os
 from tensorflow import keras
 from random import randint
 import time
-import twitter_credentials
+import twitter_credentials # you have to create your own "twitter_credentials" file
 import pandas as pd
 import json
 from tweepy import OAuthHandler
@@ -15,9 +15,9 @@ class ArticlePoster:
     ARTICLES_PATH = os.path.join(DIR_DATA_PATH, "articles.csv")
 
     # Last model in the "models" folder
-    DIR_MODEL_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "models")
-    MODEL_NAME = os.listdir(DIR_MODEL_PATH)[-1]
-    MODEL_PATH = os.path.join(DIR_MODEL_PATH, MODEL_NAME)
+    DIR_MODELS_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "models")
+    MODEL_NAME = os.listdir(DIR_MODELS_PATH)[-1]
+    MODEL_PATH = os.path.join(DIR_MODELS_PATH, MODEL_NAME)
     print("Model used : {}".format(MODEL_PATH))
 
     ACCES_TOKEN = twitter_credentials.ACCES_TOKEN
