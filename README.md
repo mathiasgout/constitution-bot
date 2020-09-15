@@ -1,6 +1,6 @@
 # Constitution Bot
  
- Un bot twitter permettant de twitter des articles ressemblant à ceux de la Constitution de la République Française.
+ Un bot twitter permettant de tweeter des articles ressemblant à ceux de la Constitution de la République Française.
 <br>Les articles sont générés par un réseau de neurones récurrents entrainé avec les textes de cette constitution.
 
 Lien vers bot : https://twitter.com/constFR_bot
