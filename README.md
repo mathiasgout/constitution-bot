@@ -16,7 +16,7 @@ Lien vers bot : https://twitter.com/constFR_bot
 
 ## Requirements
 
-Les packages suivants sont nécéssaires :
+Les packages suivants sont nécessaires :
 
 - python>=3.5
 - pandas
